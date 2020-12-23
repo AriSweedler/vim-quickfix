@@ -1,19 +1,25 @@
 " Thanks, unimpaired.vim
+
+""""""""""""""""""""""""" Move around more easily """""""""""""""""""""""" {{{
+" Quickfix
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
-nnoremap [l :lprevious<CR>
-nnoremap ]l :lnext<CR>
+
+nnoremap <Leader>qq :call QuickfixToggle()<CR>
+nnoremap <Leader>qc :cclose<CR>
+
+" Locationlist
+nnoremap <silent> [l :try <Bar> :lprevious <Bar> catch <Bar> :lfirst <Bar> endtry<CR>
+nnoremap <silent> [l :try <Bar> :lnext <Bar> catch <Bar> :llast <Bar> endtry<CR>
 nnoremap [L :lfirst<CR>
 nnoremap ]L :llast<CR>
 
 nnoremap <Leader>ll :call LocationListToggle()<CR>
 nnoremap <Leader>lc :lclose<CR>
-
-nnoremap <Leader>qq :call QuickfixToggle()<CR>
-nnoremap <Leader>qc :cclose<CR>
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
+"""""""""""" Functions to toggle quickfix list / location list """"""""""" {{{
 function! QuickfixToggle()
   if (&buftype == "quickfix")
     cclose
@@ -34,3 +40,4 @@ function! LocationListToggle()
     lopen 15
   endif
 endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
