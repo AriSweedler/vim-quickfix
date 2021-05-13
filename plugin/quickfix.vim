@@ -10,10 +10,15 @@ nnoremap <Leader>qq :call QuickfixToggle()<CR>
 nnoremap <Leader>qQ :cclose<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
 """""""""""""""""""""""""""""" Locationlist """""""""""""""""""""""""""""" {{{
+" Locationlist gets more convenient mappings than quickfix. It is the
+" preferred way. If you want to use the gloal quickfix, then go ahead. But
+" this plugin doesn't encourage it.
 nnoremap <silent> [l :try <Bar> :lprevious <Bar> catch <Bar> :lfirst <Bar> endtry<CR>
 nnoremap <silent> ]l :try <Bar> :lnext <Bar> catch <Bar> :llast <Bar> endtry<CR>
 nnoremap [L :lfirst<CR>
 nnoremap ]L :llast<CR>
+nnoremap <Leader>[l :lpfile<CR>
+nnoremap <Leader>]l :lnfile<CR>
 
 nnoremap <Leader>ll :call LocationListToggle()<CR>
 nnoremap <Leader>lL :lclose<CR>
@@ -27,6 +32,9 @@ cabbrev gerp lgrep
 " Use '<Leader>*' to do a project-wide search.
 " Put results in the location list
 nnoremap <silent> <Leader>* vgn"0y:lgrep! "<C-r>=escape(@0, '[]/\')<CR>"<CR>:lopen 15<CR><C-w>w
+" Make it easier to invoke
+nmap <silent> ]* *<Leader>*
+nmap <silent> [* *<Leader>*
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
 """""""""""" Functions to toggle quickfix list / location list """"""""""" {{{
 function! QuickfixToggle()
