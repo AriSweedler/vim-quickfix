@@ -31,7 +31,7 @@ cabbrev gerp lgrep
 """""""" Like '*', but load search results into the quickfix list """""""" {{{
 " Use '<Leader>*' to do a project-wide search.
 " Put results in the location list
-nnoremap <silent> <Leader>* vgn"0y:lgrep! "<C-r>=escape(@0, '[]/\')<CR>"<CR>:lopen 15<CR><C-w>w
+nnoremap <silent> <Leader>* :set hlsearch<CR>vgn"0y:lgrep! "<C-r>=escape(@0, '[]/\')<CR>"<CR>:lopen 15<CR><C-w>w
 " Make it easier to invoke
 nmap <silent> ]* *<Leader>*
 nmap <silent> [* *<Leader>*
