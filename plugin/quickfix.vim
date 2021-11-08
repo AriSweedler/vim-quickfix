@@ -22,6 +22,10 @@ nnoremap <Leader>]l :lnfile<CR>
 
 nnoremap <Leader>ll :call LocationListToggle()<CR>
 nnoremap <Leader>lL :lclose<CR>
+
+" Instantly invoke grep
+" TODO make a wrapper function that does all this (AND populates the @/ register)
+nnoremap <Leader>L :tabnew<CR>:lgrep ''<Left>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
 """""""""""""""""""""""" Useful command 'abbrev's """""""""""""""""""""""" {{{
 cabbrev lgerp lgrep
@@ -52,10 +56,10 @@ function! LocationListToggle()
   if (&buftype == "quickfix")
     lclose
     execute g:locationlist_return_to_window . "wincmd w"
-    call quickfix#signs#clear(winnr())
+    # call quickfix#signs#clear(winnr())
   else
     let g:locationlist_return_to_window = winnr()
-    call quickfix#signs#place(winnr())
+    # call quickfix#signs#place(winnr())
     lopen 15
   endif
 endfunction
