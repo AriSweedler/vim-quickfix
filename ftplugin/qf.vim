@@ -17,4 +17,4 @@ nmap <buffer> D <Leader>lfd
 nmap <buffer> u :lolder<CR>
 nmap <buffer> <C-r> :lnewer<CR>
 
-call developer#RegisterPlugin(expand("<sfile>:%h:%h"))
+call developer#RegisterPlugin(expand("<sfile>:h:h"))
