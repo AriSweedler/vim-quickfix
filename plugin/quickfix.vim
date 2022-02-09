@@ -33,12 +33,10 @@ cabbrev grep lgrep
 cabbrev gerp lgrep
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
 """""""" Like '*', but load search results into the quickfix list """""""" {{{
-" Use '<Leader>*' to do a project-wide search.
-" Put results in the location list
-nnoremap <silent> <Leader>* :set hlsearch<CR>vgn"0y:lgrep! "<C-r>=escape(@0, '[]/\')<CR>"<CR>:lopen 15<CR><C-w>w
+" Use '<Leader>*' to invoke '*' but with ':lgrep' instead of single file
+nnoremap <silent> <Leader>* :set hlsearch<CR>g*:tabnew<CR>:lgrep! '<C-r>/'<CR>:lopen 15<CR><C-w>w
 " Make it easier to invoke
-nmap <silent> ]* *<Leader>*
-nmap <silent> [* *<Leader>*
+nmap <silent> g* *<Leader>*
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
 """""""""""" Functions to toggle quickfix list / location list """"""""""" {{{
 function! QuickfixToggle()
