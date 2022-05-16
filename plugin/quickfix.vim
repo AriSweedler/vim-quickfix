@@ -13,12 +13,12 @@ nnoremap <Leader>qQ :cclose<CR>
 " Locationlist gets more convenient mappings than quickfix. It is the
 " preferred way. If you want to use the gloal quickfix, then go ahead. But
 " this plugin doesn't encourage it.
-nnoremap <silent> [l :try <Bar> :lprevious <Bar> catch <Bar> :lfirst <Bar> endtry<CR>
-nnoremap <silent> ]l :try <Bar> :lnext <Bar> catch <Bar> :llast <Bar> endtry<CR>
-nnoremap [L :lfirst<CR>
-nnoremap ]L :llast<CR>
-nnoremap <Leader>[l :lpfile<CR>
-nnoremap <Leader>]l :lnfile<CR>
+nnoremap <silent> [l :try <Bar> :lprevious <Bar> catch <Bar> :lfirst <Bar> endtry<CR>zv
+nnoremap <silent> ]l :try <Bar> :lnext <Bar> catch <Bar> :llast <Bar> endtry<CR>zv
+nnoremap [L :lfirst<CR>zv
+nnoremap ]L :llast<CR>zv
+nnoremap <Leader>[l :lpfile<CR>zv
+nnoremap <Leader>]l :lnfile<CR>zv
 
 nnoremap <Leader>ll :call LocationListToggle()<CR>
 nnoremap <Leader>lL :lclose<CR>
