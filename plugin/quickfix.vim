@@ -1,8 +1,8 @@
 " Thanks, unimpaired.vim
 
 """""""""""""""""""""""""""""""" Quickfix """""""""""""""""""""""""""""""" {{{
-nnoremap [q :cprevious<CR>
-nnoremap ]q :cnext<CR>
+nnoremap <silent> [q :call BrackQL()<CR>
+nnoremap <silent> ]q :call BrackQR()<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
@@ -13,8 +13,9 @@ nnoremap <Leader>qQ :cclose<CR>
 " Locationlist gets more convenient mappings than quickfix. It is the
 " preferred way. If you want to use the gloal quickfix, then go ahead. But
 " this plugin doesn't encourage it.
-nnoremap <silent> [l :try <Bar> :lprevious <Bar> catch <Bar> :lfirst <Bar> endtry<CR>zv
-nnoremap <silent> ]l :try <Bar> :lnext <Bar> catch <Bar> :llast <Bar> endtry<CR>zv
+" TODO grammaraize this
+nnoremap <silent> [l :call BrackLL()<CR>
+nnoremap <silent> ]l :call BrackLR()<CR>
 nnoremap [L :lfirst<CR>zv
 nnoremap ]L :llast<CR>zv
 nnoremap <Leader>[l :lpfile<CR>zv
@@ -60,6 +61,53 @@ function! LocationListToggle()
     " call quickfix#signs#place(winnr())
     lopen 15
   endif
+endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
+"""""""""""""""""""""" Implement the []lq movements """""""""""""""""""""" {{{
+function BrackQL()
+  try
+    cprevious
+  catch
+    cfirst
+  endtry
+  normal zv
+endfunction
+
+function BrackQR()
+  try
+    cnext
+  catch
+    clast
+  endtry
+  normal zv
+endfunction
+
+function BrackLL()
+  if getloclist(bufnr()) == []
+    echo "locationlist is empty - sending [q"
+    call feedkeys("[q")
+    return
+  endif
+  try
+    lprevious
+  catch
+    lfirst
+  endtry
+  normal zv
+endfunction
+
+function BrackLR()
+  if getloclist(bufnr()) == []
+    echo "locationlist is empty - sending ]q"
+    call feedkeys("]q")
+    return
+  endif
+  try
+    lnext
+  catch
+    llast
+  endtry
+  normal zv
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
 
