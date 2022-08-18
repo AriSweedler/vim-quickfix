@@ -65,6 +65,11 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" }}}
 """""""""""""""""""""" Implement the []lq movements """""""""""""""""""""" {{{
 function BrackQL()
+  if getqflist() == []
+    echo "quickfixlist is empty - returning"
+    return
+  endif
+
   try
     cprevious
   catch
@@ -74,6 +79,11 @@ function BrackQL()
 endfunction
 
 function BrackQR()
+  if getqflist() == []
+    echo "quickfixlist is empty - returning"
+    return
+  endif
+
   try
     cnext
   catch
@@ -83,11 +93,12 @@ function BrackQR()
 endfunction
 
 function BrackLL()
-  if getloclist(bufnr()) == []
-    echo "locationlist is empty - sending [q"
+  if getloclist(0) == []
     call feedkeys("[q")
+    echo "locationlist is empty - sending [q"
     return
   endif
+
   try
     lprevious
   catch
@@ -97,11 +108,12 @@ function BrackLL()
 endfunction
 
 function BrackLR()
-  if getloclist(bufnr()) == []
-    echo "locationlist is empty - sending ]q"
+  if getloclist(0) == []
     call feedkeys("]q")
+    echo "locationlist is empty - sending ]q"
     return
   endif
+
   try
     lnext
   catch
