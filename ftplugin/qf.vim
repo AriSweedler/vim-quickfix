@@ -1,20 +1,45 @@
 " Add the :Cfilter/:Lfilter commands
 packadd cfilter
 
+" Give access to undo'ing and redo'ing changes to the quickfix list
+nnoremap <buffer> u :lolder<CR>
+nnoremap <buffer> <C-r> :lnewer<CR>
+
 " Resize the window to be bigger/smaller
 nnoremap <buffer> + <C-w>+
 nnoremap <buffer> - <C-w>-
 
-" Filter to (delete | keep) from the (location | quickfix) list based on the current match
-nnoremap <buffer> <Leader>lfk :Lfilter ''<CR>
-nnoremap <buffer> <Leader>lfd :Lfilter! ''<CR>
-nnoremap <buffer> <Leader>cfk :Cfilter ''<CR>
-nnoremap <buffer> <Leader>cfd :Cfilter! ''<CR>
+" {{{ Give access to the quickfix filtering commands.
+" Delete or FilterIn quickfix/locationlist entries based on currently highlighted patterns
+"
+" Grammar: <Leader><QF_LL><FILTER>
+"
+" QF_LL :=
+" q (quickfix list)
+" l (localtion list)
+"
+" FILTER :=
+" k (keep - filter IN)
+" d (delete - filter OUT)
+"
+" Highlight a pattern (with '*' or '/') and use one of these commands.
+let s:qf = #{
+\   l: 'Lfilter',
+\   q: 'Cfilter',
+\ }
+let s:bang = #{
+\   k: '',
+\   d: '!',
+\ }
+for [key_cmd, cmd] in items(s:qf)
+  for [key_bang, bang] in items(s:bang)
+    execute printf("nnoremap <buffer> <Leader>%s%s :%s%s ''<CR>", key_cmd, key_bang, cmd, bang)
+  endfor
+endfor
+" }}}
 
 " Convenience mappings
-nmap <buffer> F <Leader>lfk
-nmap <buffer> D <Leader>lfd
-nmap <buffer> u :lolder<CR>
-nmap <buffer> <C-r> :lnewer<CR>
+nmap <buffer> F <Leader>lk
+nmap <buffer> D <Leader>ld
 
 call developer#register_plugin(expand("<sfile>:h:h"))
