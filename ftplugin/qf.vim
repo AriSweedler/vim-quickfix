@@ -38,8 +38,11 @@ for [key_cmd, cmd] in items(s:qf)
 endfor
 " }}}
 
-" Convenience mappings
+" Convenience mappings (Filter in, Delete out)
 nmap <buffer> F <Leader>lk
 nmap <buffer> D <Leader>ld
+
+" Delete the current line from locationlist
+nnoremap <buffer> <silent> X $vF<Bar>w"0y/\V<C-r>0<CR>:Lfilter! ''<CR>
 
 call developer#register_plugin(expand("<sfile>:h:h"))

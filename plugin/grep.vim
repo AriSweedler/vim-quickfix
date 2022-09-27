@@ -31,7 +31,7 @@ nnoremap <Leader>L :call <SID>ari_lgrep('')<Left><Left>
 " Have 'g*' automatically load search results into the quickfix list. And have
 " it work in visual mode, too
 nnoremap <silent> g* g*:call <SID>ari_lgrep('<C-r>/')<CR>
-vnoremap <silent> g* "/y:call <SID>ari_lgrep('<C-r>/')<CR>
+vnoremap <silent> g* "0y:call <SID>ari_lgrep('<C-r>0')<CR>
 
 " TODO implement this
 "https://vi.stackexchange.com/questions/38363/how-to-get-command-line-mode-typing-to-interact-with-incsearch/38376#38376
