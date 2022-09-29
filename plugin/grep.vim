@@ -12,8 +12,8 @@ endif
 " Wrapper around 'lgrep' to open results in a new tab, also highlight what we
 " searched for, and automatically open the locationlist
 function! s:ari_lgrep(pattern)
-  " Create a new tab so the locationlist is scoped to it
-  :tabnew
+  " Create a new tab so we don't move from the current one
+  :tabnew %
   :set hlsearch
   :call feedkeys("/".a:pattern."\<CR>")
   try
