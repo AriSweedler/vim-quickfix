@@ -15,7 +15,7 @@ function! s:ari_lgrep(pattern)
   " Create a new tab so we don't move from the current one
   :tabnew %
   :set hlsearch
-  :call feedkeys("/".a:pattern."\<CR>")
+  :call feedkeys("/\\c".a:pattern."\<CR>")
   try
     :silent execute "lgrep '".a:pattern."'"
   catch
